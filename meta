@@ -65,7 +65,9 @@ download() {
 
 	echo "download checksums and signature"
 	if [ x"$ARIA2C" == "x" ]; then
+		set +e
 		which wget 2>&1>/dev/null
+		set -e
 		if [ $? -eq 0 ]; then
 			wget "$TARGETS_URL/sha256sums" -O sha256sums
 			wget "$TARGETS_URL/sha256sums.gpg" -O sha256sums.asc
